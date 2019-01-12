@@ -17,8 +17,6 @@ def move_rover(upper_right, start, commands)
   curr_coord = [start[0].to_i, start[1].to_i, start[2]]
 
   commands.each do |step|
-    # puts "before step : #{curr_coord}"
-    # puts "step : #{step}"
     case step
     when 'L'
       curr_coord[2] = dir_hash[curr_coord[2]][:L]
@@ -28,14 +26,12 @@ def move_rover(upper_right, start, commands)
       curr_coord = dir_hash[curr_coord[2]][:M][curr_coord[0], curr_coord[1], curr_coord[2]]
     else
       puts "Error: Invalid command input #{step}"
-      exit
+      return
     end
 
-    # puts "after step :#{curr_coord}"
-    # See that the coordinates are valid
     if (curr_coord[0] > upper_right[0] || curr_coord[0] < 0 ) || (curr_coord[1] > upper_right[1] || curr_coord[1] < 0 )
       puts "Error: Rover is out of bounds. Occured at step #{step} with coordinates #{curr_coord.join(" ")}"
-      exit
+      return
     end
   end
 
