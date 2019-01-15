@@ -1,12 +1,12 @@
-#Mars Rover Project
+# Mars Rover Project
 
 This project helps determine the position of a mars rover given coordinates of a plane and the commands to move it.
 It is written in ruby.
 
-#Prequistes
+# Prequistes
 You will need Ruby version 2.0 and above to run this program. Please refer to this guide : [how to install ruby](https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/nginx/oss/install_language_runtime.html) to download ruby.
 
-#Install
+# Install
 To install the code for this program, you will need to clone the repository from git.
 Using ssh
 ```
