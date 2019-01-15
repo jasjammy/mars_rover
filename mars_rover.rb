@@ -9,10 +9,14 @@ require 'stringio'
 class Rover
 
   # This hash stores the value of the coordinates and orientation when the step is 'L' or 'R' or 'M'
-  @@dir_hash = Hash.new()
+  DIR_HASH = {
+      'E': {'L':'N', 'R':'S', 'M': lambda {|x,y,o| [x+1,y,o] } },
+      'N': {'L':'W', 'R':'E', 'M': lambda {|x,y,o| [x,y+1,o] } },
+      'S': {'L':'E', 'R':'W', 'M': lambda {|x,y,o| [x,y-1,o] } },
+      'W': {'L':'S', 'R':'N', 'M': lambda {|x,y,o| [x-1,y,o] } }
+  }
 
   def initialize(upper_right, start, commands)
-    populate_dir_hash
     @upper_right = upper_right
     @start = start
     @commands = commands
@@ -25,12 +29,12 @@ class Rover
       case step
       when 'L'
         # apply L command to change the orientation only.
-        curr_coord[2] = @@dir_hash[curr_coord[2]][:L]
+        curr_coord[2] = DIR_HASH[curr_coord[2].to_sym][:L]
       when 'R'
-        curr_coord[2] = @@dir_hash[curr_coord[2]][:R]
+        curr_coord[2] = DIR_HASH[curr_coord[2].to_sym][:R]
       when 'M'
         # apply the M command to move one step in the same direction
-        curr_coord = @@dir_hash[curr_coord[2]][:M][curr_coord[0], curr_coord[1], curr_coord[2]]
+        curr_coord = DIR_HASH[curr_coord[2].to_sym][:M][curr_coord[0], curr_coord[1], curr_coord[2]]
       else
         puts "Error: Invalid command input #{step}"
         return
@@ -44,16 +48,6 @@ class Rover
 
     return curr_coord
 
-  end
-
-  private
-
-  def populate_dir_hash
-    # This is the hash that contains the result of L, R and M applied to a part of the coordinate
-    @@dir_hash['E'] = {'L':'N', 'R':'S', 'M': lambda {|x,y,o| [x+1,y,o] } }
-    @@dir_hash['N'] = {'L':'W', 'R':'E', 'M': lambda {|x,y,o| [x,y+1,o] } }
-    @@dir_hash['S'] = {'L':'E', 'R':'W', 'M': lambda {|x,y,o| [x,y-1,o] } }
-    @@dir_hash['W'] = {'L':'S', 'R':'N', 'M': lambda {|x,y,o| [x-1,y,o] } }
   end
 end
 
