@@ -30,7 +30,7 @@ They follow the following format:
 LMLMLMLMLM    # This is the commands to move the rover 'L' - left or 'R'- right 
 ```
 
-Design Decisions:
+# Design Decisions
 1. I did not need to use any framework to help me with this project and it would be redundant.
 2. Instead of making an if statement block to determine the coordinates after the step/command given, I chose to fill a hash.
     * I filled the hash with the results of the current step applied on the directional coordinates
