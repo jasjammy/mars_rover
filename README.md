@@ -17,10 +17,10 @@ or using https:
 https://github.com/jasjammy/mars_rover.git
 ```
 
-Now you can change directory to the mars_rover directory to run the code.
+On command line, you can change directory to the mars_rover directory to run the code.
 
 ```
-ruby mars_rover.rb input.txt
+>> ruby mars_rover.rb input.txt
 ```
 In the repository, there are text files, those are sample input files.
 They follow the following format:
